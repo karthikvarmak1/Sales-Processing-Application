@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+ 
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<struts-config>
+	<form-beans>
+		<form-bean type="com.zoho.beans.FileUploadForm" name="fileUploadForm" />
+		<form-bean type="com.zoho.beans.DateFilter" name="dateFilterForm" />
+	</form-beans>
+	<action-mappings>
+		<action path="/topSales" type="org.apache.struts.actions.ForwardAction"
+			parameter="/pages/toprecords.jsp"></action>
+		<action path="/UploadPage" type="org.apache.struts.actions.ForwardAction"
+			parameter="/pages/fileupload.jsp" />
+		<action path="/logout" type="org.apache.struts.actions.ForwardAction"
+			parameter="/pages/logout.jsp" />
+		<action path="/Upload" type="com.zoho.controller.SalesController"
+			name="fileUploadForm" input="/pages/fileupload.jsp">
+			<forward name="uploaded" path="/pages/success.jsp" />
+		</action>
+		<action path="/filterByDate" type="com.zoho.controller.FilterController"
+			name="dateFilterForm" input="/pages/fileupload.jsp">
+			<forward name="filtered" path="/pages/fileupload.jsp"></forward>
+		</action>
+	</action-mappings>
+	<message-resources parameter="message" />
+</struts-config>
